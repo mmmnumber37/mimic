@@ -20,49 +20,42 @@
       elevated
     >
       <q-list>
-        <q-item clickable v-ripple to="/">
-          <q-item-section>
-            <q-icon name="add_circle_outlinen" />
-          </q-item-section>
-          <q-item-section> main </q-item-section>
-        </q-item>
-        <q-separator />
-        <q-item clickable v-ripple to="/calendar">
-          <q-item-section >
-            <q-icon name="add_circle_outline" />
-          </q-item-section>
-          <q-item-section> calendar </q-item-section>
-        </q-item>
+        <template v-for="(menuItem, index) in configMenu" :key="index">
+          <q-item :to="menuItem.href" exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon :name="menuItem.icon" />
+            </q-item-section>
+            <q-item-section>
+              {{ menuItem.title }}
+            </q-item-section>
+          </q-item>
+          <q-separator />
+        </template>
       </q-list>
-      <!-- <q-btn class="column" icon="add_circle_outline" to="/"> main </q-btn>
-      <q-btn class="column" icon="add_circle_outline" to="/calendar">
-        calendar
-      </q-btn> -->
     </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
-
-    <!-- <q-footer bordered class="bg-grey-8 text-white">
-      <q-toolbar id="layout-footer" />
-    </q-footer> -->
   </q-layout>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
+import { configMenu } from 'src/data/leftMenu';
 
-export default {
+export default defineComponent({
   setup() {
     const leftDrawerOpen = ref(false);
+    const toggleLeftDrawer = () => {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+    };
 
     return {
+      configMenu,
       leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
+      toggleLeftDrawer,
     };
   },
-};
+});
 </script>
