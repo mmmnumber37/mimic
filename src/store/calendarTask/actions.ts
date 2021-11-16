@@ -18,7 +18,7 @@ const actions: ActionTree<CalendarTasksState, StateInterface> = {
     await db.updateTask(data);
     await dispatch('getTasks');
   },
-  async emoveTask({ dispatch }, id: number) {
+  async removeTask({ dispatch }, id: number) {
     await db.deleteTask(id);
     await dispatch('getTasks');
   },

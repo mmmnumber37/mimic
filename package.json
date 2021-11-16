@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@types/lodash": "^4.14.177",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "dexie": "^3.0.3",
+    "lodash": "^4.17.21",
     "quasar": "^2.0.0",
     "vue-auto-routing": "^1.0.1",
     "vue-i18n": "^9.0.0",
