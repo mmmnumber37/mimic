@@ -4,6 +4,7 @@
       <q-input
         ref="name"
         v-model="nameModel"
+        autofocus
         label="name"
         class="q-mb-md col-12"
       />

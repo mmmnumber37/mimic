@@ -18,4 +18,9 @@ export const configMenu: Menu[] = [
     href: '/watcher',
     icon: 'add_circle_outlinen',
   },
+  {
+    title: 'Homework',
+    href: '/homework',
+    icon: 'add_circle_outlinen',
+  },
 ];

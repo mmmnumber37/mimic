@@ -6,6 +6,9 @@ import {
   useStore as vuexUseStore,
 } from 'vuex';
 
+import homework from './homework';
+import { HomeworksState } from './homework/state';
+
 import watcherEvent from './watcherEvent';
 import { WatcherEventsState } from './watcherEvent/state';
 
@@ -30,6 +33,7 @@ export interface StateInterface {
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
   calendarTask: CalendarTasksState;
   watcherEvent: WatcherEventsState;
+  homework: HomeworksState;
 }
 
 // provide typings for `this.$store`
@@ -49,6 +53,7 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       calendarTask,
       watcherEvent,
+      homework
     },
 
     // enable strict mode (adds overhead!)

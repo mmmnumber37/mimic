@@ -8,7 +8,7 @@
         label="name"
         class="q-mb-md col-12"
       />
-      <q-btn class="btn col-auto" label="save" @click="createWatcher" />
+      <q-btn class="btn col-auto" label="save" @click="createHomework" />
     </div>
   </q-page>
 </template>
@@ -25,25 +25,17 @@ export default defineComponent({
     const store = useStore();
     const router = useRouter();
     const $q = useQuasar();
-    //const name = ref(null);
     const nameModel = ref(null);
 
-    // @TODO: надо пописать тип, возможно не работает на мобильке
-    // onMounted(async () => {
-    //   await nextTick();
-    //
-    //   //name.value.focus();
-    // });
-
-    const createWatcher = async () => {
+    const createHomework = async () => {
       try {
         if (!nameModel.value) throw new Error('Пустое поле');
 
-        await store.dispatch('watcherEvent/addWatcher', {
+        await store.dispatch('homework/addHomework', {
           title: nameModel.value,
         });
 
-        await router.push('/watcher');
+        await router.push('/homework');
       } catch (e) {
         $q.notify({
           message: (e as Error).message,
@@ -53,9 +45,8 @@ export default defineComponent({
     };
 
     return {
-      // name,
       nameModel,
-      createWatcher,
+      createHomework,
     };
   },
 });
