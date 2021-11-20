@@ -1,0 +1,12 @@
+{
+  "name": "mimic",
+  "version": "0.0.1",
+  "description": "A Quasar Framework app",
+  "author": "Maxim Zotov <mmmnumber37@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "2.5.0",
+    "@capacitor/cli": "^2.0.0",
+    "@capacitor/core": "^2.0.0"
+  }
+}
