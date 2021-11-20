@@ -1,10 +1,10 @@
 <template>
   <q-page>
     <q-list>
-      <template v-for="(watcher, index) in watchers" :key="index">
-        <q-item :to="`/watcher/view/${watcher.id}`" exact clickable v-ripple>
+      <template v-for="(hw, index) in hws" :key="index">
+        <q-item exact clickable v-ripple>
           <q-item-section>
-            {{ watcher.title }}
+            {{ hw.title }}
           </q-item-section>
 
           <!-- <q-item-section side>
@@ -23,7 +23,7 @@
               round
               dense
               icon="delete"
-              @click.stop="removeWatcher(watcher.id, $event)"
+              @click="removeHomework(hw.id)"
             />
           </q-item-section>
         </q-item>
@@ -31,7 +31,7 @@
       </template>
     </q-list>
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn round color="accent" icon="add" to="/watcher/add" />
+      <q-btn round color="accent" icon="add" to="/homework/add" />
     </q-page-sticky>
   </q-page>
 </template>
@@ -50,7 +50,7 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-        await store.dispatch('watcherEvent/getWatchers');
+        await store.dispatch('homework/getHomeworks');
       } catch (error) {
         console.error(error as Error);
         $q.notify({
@@ -60,18 +60,11 @@ export default defineComponent({
       }
     });
 
-    const watchers = computed(() =>
-      cloneDeep(store.state.watcherEvent.watchers)
-    );
+    const hws = computed(() => cloneDeep(store.state.homework.homeworks));
 
-    const removeWatcher = async (
-      id: number | undefined,
-      event: { preventDefault: () => void }
-    ) => {
-      event.preventDefault();
-
+    const removeHomework = async (id: number | undefined) => {
       try {
-        await store.dispatch('watcherEvent/removeWatcher', id);
+        await store.dispatch('homework/removeHomework', id);
       } catch (error) {
         console.error(error as Error);
         $q.notify({
@@ -82,8 +75,8 @@ export default defineComponent({
     };
 
     return {
-      watchers,
-      removeWatcher,
+      hws,
+      removeHomework,
     };
   },
 });

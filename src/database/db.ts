@@ -1,12 +1,16 @@
 import Dexie from 'dexie';
+
 import { CalendarTask } from 'src/models/calendar';
 import { Watcher, WatcherEvent } from 'src/models/watcher';
+import { Homework } from 'src/models/homework';
+
 import dataPackage from '../../package.json';
 
 export class DBMimic extends Dexie {
   tasks: Dexie.Table<CalendarTask, number>;
   watchers: Dexie.Table<Watcher, number>;
   watcherEvents: Dexie.Table<WatcherEvent, number>;
+  homeworks: Dexie.Table<Homework, number>;
 
   constructor() {
     super('DBMimic');
@@ -15,14 +19,18 @@ export class DBMimic extends Dexie {
     // @TODO: реализовать отдельные модули для таблиц и миграций
     this.version(Number(dataPackage['db-version'])).stores({
       tasks: '++id',
-      watcher: '++id',
-      watcherEvent: '++id',
+      watchers: '++id',
+      watcherEvents: '++id',
+      homeworks: '++id',
     });
 
     this.tasks = this.table('tasks');
-    this.watchers = this.table('watcher');
-    this.watcherEvents = this.table('watcherEvent');
+    this.watchers = this.table('watchers');
+    this.watcherEvents = this.table('watcherEvents');
+    this.homeworks = this.table('homeworks');
   }
+
+  // Tasks
 
   async getTasks(): Promise<CalendarTask[]> {
     return await this.tasks.toArray();
@@ -40,6 +48,8 @@ export class DBMimic extends Dexie {
     await this.tasks.delete(id);
   }
 
+  // Watchers
+
   async getWatchers(): Promise<Watcher[]> {
     return await this.watchers.toArray();
   }
@@ -55,6 +65,8 @@ export class DBMimic extends Dexie {
   async deleteWatcher(id: number) {
     await this.watchers.delete(id);
   }
+
+  // WatcherEvents
 
   async getWatcherEvents(): Promise<WatcherEvent[]> {
     return await this.watcherEvents.toArray();
@@ -76,5 +88,19 @@ export class DBMimic extends Dexie {
 
   async deleteWatcherEvent(id: number) {
     await this.watcherEvents.delete(id);
+  }
+
+  // Homeworks
+
+  async getHomeworks(): Promise<Homework[]> {
+    return await this.homeworks.toArray();
+  }
+
+  async addHomework(homeworks: Homework) {
+    await this.homeworks.add(homeworks);
+  }
+
+  async deleteHomework(id: number) {
+    await this.homeworks.delete(id);
   }
 }
