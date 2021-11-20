@@ -22,5 +22,11 @@ yarn run lint
 quasar build
 ```
 
+### Build the app
+#### Необходим jdk-11 в JAVA_HOME
+```bash
+quasar build -m capacitor -T [ios|android]
+```
+
 ### Customize the configuration
 See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
