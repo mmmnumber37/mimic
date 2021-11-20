@@ -6,6 +6,9 @@ import {
   useStore as vuexUseStore,
 } from 'vuex';
 
+import watcherEvent from './watcherEvent';
+import { WatcherEventsState } from './watcherEvent/state';
+
 import calendarTask from './calendarTask';
 import { CalendarTasksState } from './calendarTask/state';
 
@@ -26,6 +29,7 @@ export interface StateInterface {
   // example: ExampleStateInterface;
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
   calendarTask: CalendarTasksState;
+  watcherEvent: WatcherEventsState;
 }
 
 // provide typings for `this.$store`
@@ -36,13 +40,15 @@ declare module '@vue/runtime-core' {
 }
 
 // provide typings for `useStore` helper
-export const storeKey: InjectionKey<VuexStore<StateInterface>> =
-  Symbol('vuex-key');
+export const storeKey: InjectionKey<VuexStore<StateInterface>> = Symbol(
+  'vuex-key'
+);
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore<StateInterface>({
     modules: {
       calendarTask,
+      watcherEvent,
     },
 
     // enable strict mode (adds overhead!)

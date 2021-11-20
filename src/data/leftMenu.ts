@@ -13,4 +13,9 @@ export const configMenu: Menu[] = [
     href: '/calendar',
     icon: 'add_circle_outlinen',
   },
+  {
+    title: 'Watcher',
+    href: '/watcher',
+    icon: 'add_circle_outlinen',
+  },
 ];

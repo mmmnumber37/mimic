@@ -1,4 +1,4 @@
-export interface CalendarTask {
+export type CalendarTask = {
   date?: string;
   name?: string;
   check?: boolean;

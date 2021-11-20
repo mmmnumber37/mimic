@@ -1,6 +1,7 @@
 {
   "name": "mimic",
   "version": "0.0.1",
+  "db-version": "1",
   "description": "A Quasar Framework app",
   "productName": "Mimic",
   "author": "Maxim Zotov <mmmnumber37@gmail.com>",
