@@ -1,3 +1,3 @@
-import { DB } from 'src/models/db';
+import { DBMimic } from 'src/database/db';
 
-export const db = new DB();
+export const db = new DBMimic();
